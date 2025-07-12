@@ -1,0 +1,19 @@
+name: Embed GH_TOKEN into index.html
+
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  embed-token:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Replace GH_TOKEN placeholder in index.html
+        run: |
+          TOKEN="${{ secrets.GH_TOKEN }}"
+          sed -i "s|__GH_TOKEN__|$TOKEN|g" index.html
