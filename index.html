@@ -444,57 +444,35 @@
                 if (!response.ok) throw new Error("Failed to fetch repositories");
                 const repos = await response.json();
                 const filteredRepos = repos.filter(repo =>
-                  Array.isArray(repo.topics) ? repo.topics.includes("portfolio") : true
+                  repo.topics ? repo.topics.includes("portfolio") : false
                 );
                 filteredRepos.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
                 const repoList = document.getElementById("repoList");
                 filteredRepos.forEach((repo) => {
-                  if (!repo.homepage) return;
                   const li = document.createElement("li");
-                  li.style.position = "relative";
-                  li.style.overflow = "hidden";
-                  li.style.border = "1px solid #888";
-                  li.style.borderRadius = "8px";
-                  li.style.marginBottom = "20px";
-                  const iframe = document.createElement("iframe");
-                  iframe.src = repo.homepage;
-                  iframe.style.width = "100%";
-                  iframe.style.height = "300px";
-                  iframe.style.border = "none";
-                  iframe.style.opacity = "0.5";
-                  iframe.style.transition = "opacity 0.3s ease";
-                  li.appendChild(iframe);
-                  const overlay = document.createElement("div");
-                  overlay.style.position = "absolute";
-                  overlay.style.top = "0";    
-                  overlay.style.left = "0";
-                  overlay.style.width = "100%";
-                  overlay.style.height = "100%";
-                  overlay.style.background = "rgba(0, 0, 0, 0.7)";
-                  overlay.style.color = "#fff";
-                  overlay.style.display = "flex";
-                  overlay.style.flexDirection = "column";
-                  overlay.style.justifyContent = "center";
-                  overlay.style.alignItems = "center";
-                  overlay.style.textAlign = "center";
-                  overlay.style.opacity = "0";
-                  overlay.style.transition = "opacity 0.3s ease";
-                  overlay.style.padding = "10px";
-                  const name = document.createElement("h3");
-                  name.textContent = repo.name;
+                  const a = document.createElement("a");
+                  a.href = repo.html_url;
+                  a.textContent = repo.name;
+                  a.target = "_blank";
+                  li.appendChild(a);
                   const desc = document.createElement("p");
                   desc.textContent = repo.description || "No description available.";
-                  overlay.appendChild(name);
-                  overlay.appendChild(desc);
-                  li.appendChild(overlay);
-                  li.addEventListener("mouseenter", () => {
-                    iframe.style.opacity = "0.2";
-                    overlay.style.opacity = "1";
-                  });
-                  li.addEventListener("mouseleave", () => {
-                    iframe.style.opacity = "0.5";
-                    overlay.style.opacity = "0";
-                  });
+                  li.appendChild(desc);
+                  const created = document.createElement("p");
+                  created.textContent = "Created at: " + new Date(repo.created_at).toLocaleString();
+                  li.appendChild(created);
+                  const updated = document.createElement("p");
+                  updated.textContent = "Last updated at: " + new Date(repo.updated_at).toLocaleString();
+                  li.appendChild(updated);
+                  if (repo.homepage && repo.homepage.trim() !== "") {
+                    const iframe = document.createElement("iframe");
+                    iframe.src = repo.homepage;
+                    iframe.style.width = "100%";
+                    iframe.style.height = "300px";
+                    iframe.style.border = "1px solid #ccc";
+                    iframe.loading = "lazy";
+                    li.appendChild(iframe);
+                  }
                   repoList.appendChild(li);
                 });
                 const loader = document.getElementById("loader");
