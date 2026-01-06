@@ -1,0 +1,19 @@
+{
+  "name": "hirotoshiuchida",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tailwindcss -i ./assets/css/input.css -o ./assets/css/build.css --minify",
+    "watch": "tailwindcss -i ./assets/css/input.css -o ./assets/css/build.css --watch"
+  },
+  "keywords": [],
+  "author": "hirotoshiuchida <uho02741358@gmail.com> (https://github.com/Uchida16104)",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.17"
+  }
+}
