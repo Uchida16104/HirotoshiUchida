@@ -13,5 +13,5 @@ jobs:
       - name: Verify templates
         run: |
           for f in index.php 404.php page.php single.php archive.php category.php taxonomy.php author.php date.php; do
-            test -f wp-content/themes/hirotoshiuchida/$f
+            test -f backend/wordpress/wp-content/themes/hirotoshiuchida/$f
           done
