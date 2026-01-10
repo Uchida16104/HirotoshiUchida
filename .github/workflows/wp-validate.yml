@@ -2,6 +2,9 @@ name: Validate Theme
 
 on:
   push:
+    branches:
+      - main
+      - wp
 
 jobs:
   check:
@@ -10,8 +13,46 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Verify templates
+      # --------------------------------------------------
+      # Required templates (WordPress-correct baseline)
+      # --------------------------------------------------
+      - name: Verify required WordPress templates
         run: |
-          for f in index.php 404.php page.php single.php archive.php category.php taxonomy.php author.php date.php; do
-            test -f backend/wordpress/wp-content/themes/hirotoshiuchida/$f
+          set -e
+
+          THEME_DIR="backend/wordpress/wp-content/themes/hirotoshiuchida"
+          REQUIRED_FILES="index.php page.php single.php archive.php"
+
+          if [ ! -d "$THEME_DIR" ]; then
+            echo "::error::Theme directory not found: $THEME_DIR"
+            exit 1
+          fi
+
+          for f in $REQUIRED_FILES; do
+            if [ ! -f "$THEME_DIR/$f" ]; then
+              echo "::error file=$THEME_DIR/$f::Missing required template: $f"
+              exit 1
+            fi
           done
+
+          echo "Required templates validation passed."
+
+      # --------------------------------------------------
+      # Strict templates (design-policy enforcement)
+      # --------------------------------------------------
+      - name: Verify all templates (strict)
+        if: ${{ vars.STRICT_THEME_TEMPLATES == 'true' }}
+        run: |
+          set -e
+
+          THEME_DIR="backend/wordpress/wp-content/themes/hirotoshiuchida"
+          ALL_FILES="index.php 404.php page.php single.php archive.php category.php taxonomy.php author.php date.php"
+
+          for f in $ALL_FILES; do
+            if [ ! -f "$THEME_DIR/$f" ]; then
+              echo "::error file=$THEME_DIR/$f::Missing template (strict mode): $f"
+              exit 1
+            fi
+          done
+
+          echo "Strict templates validation passed."
