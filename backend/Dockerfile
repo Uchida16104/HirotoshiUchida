@@ -33,14 +33,14 @@ ENV WORDPRESS_DB_NAME=${DB_NAME}
 
 WORKDIR /var/www/html
 
-COPY wordpress /var/www/html
+COPY wordpress/ /var/www/html/
+
+RUN chown -R www-data:www-data /var/www/html
 
 COPY package.json package-lock.json ./
 RUN if [ -f package.json ]; then npm install; fi
 
 COPY script.js /var/www/html/
-
-RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
 
