@@ -1,0 +1,1 @@
+<!-- single.jsx generated -->

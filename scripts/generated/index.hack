@@ -1,0 +1,1 @@
+<!-- index.hack generated -->
