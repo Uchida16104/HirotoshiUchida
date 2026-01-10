@@ -1,0 +1,1 @@
+<!-- single.tsx generated -->
