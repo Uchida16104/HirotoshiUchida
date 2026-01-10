@@ -1,4 +1,4 @@
-import { POST_QUERY, ALL_POSTS_QUERY } from '@/lib/graphql/queries';
+import { ALL_POSTS_QUERY, POST_QUERY } from '../../../lib/graphql/queries';
 
 export const revalidate = 60;
 
