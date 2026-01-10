@@ -10,4 +10,3 @@ export const POST_QUERY = `
     }
   }
 `;
-

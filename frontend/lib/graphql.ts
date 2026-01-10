@@ -1,24 +1,21 @@
-export async function getPosts() {
-  const res = await fetch(
-    "https://hirotoshiuchida.onrender.com/graphql",
-    {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        query: `
-          {
-            posts {
-              nodes {
-                title
-                slug
-                content
-              }
-            }
-          }
-        `
-      })
+export const POST_QUERY = `
+  query Post($slug: ID!) {
+    post(id: $slug, idType: SLUG) {
+      title
+      blocks {
+        name
+        renderedHtml
+      }
     }
-  );
-  return res.json();
-}
+  }
+`;
 
+export const ALL_POSTS_QUERY = `
+  query AllPosts {
+    posts {
+      nodes {
+        slug
+      }
+    }
+  }
+`;
