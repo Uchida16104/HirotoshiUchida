@@ -16,13 +16,10 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zlib1g-dev \
     build-essential \
-    software-properties-common \
+    lsb-release \
     && curl -fsSL https://deb.nodesource.com/setup_20.x | bash - \
     && apt-get install -y nodejs \
     && npm install -g npm \
-    && echo "deb http://dl.hhvm.com/ubuntu $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/hhvm.list \
-    && wget -O - http://dl.hhvm.com/conf/hhvm.gpg.key | apt-key add - \
-    && apt-get update && apt-get install -y hhvm \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
