@@ -25,6 +25,8 @@ WORKDIR /var/www/html
 
 COPY wordpress /var/www/html
 
+COPY script.js /var/www/html/
+
 COPY package.json package-lock.json ./
 RUN if [ -f package.json ]; then npm install; fi
 
