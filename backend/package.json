@@ -8,6 +8,7 @@
     "watch:css": "tailwindcss -i ./wordpress/wp-content/themes/hirotoshiuchida/styles.css -o ./wordpress/wp-content/themes/hirotoshiuchida/dist/styles.css --watch"
   },
   "dependencies": {
+    "express": "^4.18.2",
     "alpinejs": "^3.12.0",
     "htmx.org": "^1.9.2"
   },
