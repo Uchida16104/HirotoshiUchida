@@ -28,5 +28,10 @@ ENV WORDPRESS_DB_PASSWORD=${DB_PASSWORD}
 ENV WORDPRESS_DB_NAME=${DB_NAME}
 
 COPY wordpress /var/www/html
-RUN chown -R www-data:www-data /var/www/html
 
+RUN a2enmod rewrite
+
+RUN chown -R www-data:www-data /var/www/html && \
+    chmod -R 755 /var/www/html
+
+RUN sed -i 's/AllowOverride None/AllowOverride All/g' /etc/apache2/apache2.conf
