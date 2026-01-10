@@ -1,13 +1,4 @@
-export const ALL_POSTS_QUERY = `
-  query AllPosts {
-    posts {
-      nodes {
-        slug
-      }
-    }
-  }
-`;
-
+// graphql/queries.ts
 export const POST_QUERY = `
   query Post($slug: ID!) {
     post(id: $slug, idType: SLUG) {
