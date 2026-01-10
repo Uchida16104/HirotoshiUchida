@@ -7,7 +7,7 @@ add_action('save_post', function($post_id) {
   if (wp_is_post_revision($post_id)) return;
 
   wp_remote_post(
-    'https://hirotoshiuchida.vercel.app/api/revalidate',
+    'https://hirotoshi-uchida.vercel.app/api/revalidate',
     [
       'headers' => [
         'Authorization' => 'Bearer ' . getenv('VERCEL_REVALIDATE_TOKEN'),
