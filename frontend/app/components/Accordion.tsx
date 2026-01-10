@@ -1,8 +1,13 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, ReactNode } from 'react';
 
-export function Accordion({ title, children }) {
+interface AccordionProps {
+  title: string;
+  children: ReactNode;
+}
+
+export function Accordion({ title, children }: AccordionProps) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -14,4 +19,3 @@ export function Accordion({ title, children }) {
     </div>
   );
 }
-
