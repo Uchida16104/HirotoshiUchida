@@ -1,0 +1,19 @@
+{
+  "name": "wordpress",
+  "version": "1.0.0",
+  "description": "WordPress backend with npm frontend tooling",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i ./wordpress/wp-content/themes/hirotoshiuchida/styles.css -o ./wordpress/wp-content/themes/hirotoshiuchida/dist/styles.css --minify",
+    "watch:css": "tailwindcss -i ./wordpress/wp-content/themes/hirotoshiuchida/styles.css -o ./wordpress/wp-content/themes/hirotoshiuchida/dist/styles.css --watch"
+  },
+  "dependencies": {
+    "alpinejs": "^3.12.0",
+    "htmx.org": "^1.9.2"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0",
+    "postcss": "^8.4.23",
+    "autoprefixer": "^10.4.15"
+  }
+}
