@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="This is Hirotoshi Uchida's portfolio website."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hirotoshi Uchida</title>
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://cdn.glitch.global/50a091f7-1894-4552-851e-bc0708f3060e/theme.png?v=1741169098886"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://cdn.glitch.global/50a091f7-1894-4552-851e-bc0708f3060e/theme.png?v=1741169098886"
+    />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Hirotoshi Uchida",
+        "url": "https://hirotoshiuchida.glitch.me",
+        "sameAs": [
+          "g.co/kgs/sfhWkK",
+          "g.co/kgs/LDV2Pv",
+          "https://x.com/h1r010sh1",
+          "https://www.facebook.com/Uchida16104",
+          "https://www.instagram.com/hirotoshiuchida",
+          "https://hearthis.at/hirotoshi-uchida",
+          "https://hearthis.at/hirotoshi-uchida-2nd",
+          "https://hearthis.at/hirotoshi-uchida-3rd",
+          "https://youtube.com/@HirotoshiUchida",
+          "https://github.com/Uchida16104",
+          "https://lit.link/hirotoshiuchida"
+        ]
+      }
+    </script>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      * {
+        font-family: "Courier New";
+        scroll-behavior: smooth;
+      }
+      body,
+      html {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: black;
+        transition: background 1s ease-out;
+        overflow-x: hidden;
+      }
+      #contents {
+        padding-top: 70px;
+      }
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        overflow: hidden;
+        z-index: 100;
+      }
+      header > img {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        object-fit: cover;
+        object-position: center top;
+      }
+      header h1 {
+        position: absolute;
+        top: 50%;
+        left: 10%;
+        transform: translateY(-100%);
+        color: yellow;
+        z-index: 1;
+      }
+      img {
+        width: 100%;
+      }
+      #about {
+        display: flex;
+      }
+      #about > img {
+        width: 25%;
+      }
+      .glitch {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.1);
+        mix-blend-mode: difference;
+        transition: opacity 0.3s ease-out;
+        opacity: 1;
+      }
+      .particle {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.2);
+        transition: opacity 0.5s ease-out;
+        opacity: 1;
+      }
+      #loader {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin: 20px;
+      }
+      .spinner {
+        border: 8px solid #f3f3f3;
+        border-top: 8px solid #3498db;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      a,
+      p,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      ul,
+      ol,
+      li,
+      label {
+        font-weight: bold;
+        color: white;
+      }
+      a {
+        text-decoration: none;
+      }
+      a:hover {
+        color: black;
+      }
+      #lit-widget-container {
+        max-width: 768px;
+        margin: 0 auto;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+        background-color: #fff;
+      }
+      .set-list {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-width: 768px;
+        margin: 0 auto;
+      }
+      .set-item {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+      .set-item iframe {
+        width: 100%;
+        height: 200px;
+        border: none;
+      }
+      .podcast-list {
+        display: flex;
+        gap: 20px;
+      }
+      .podcast-item {
+        margin: 0 auto;
+      }
+      .hidden {
+        display: none;
+      }
+      label {
+        display: block;
+        margin-top: 10px;
+      }
+      input,
+      textarea {
+        width: 100%;
+        max-width: 400px;
+      }
+      button {
+        margin-top: 10px;
+      }
+      footer {
+        border-top: 3px solid　#ffffff;
+        text-align: center;
+        margin: 0 auto;
+      }
+      @media screen and (max-width: 768px) {
+        #lit-widget-container {
+          width: 100%;
+          margin: 0 auto;
+        }
+        .set-list {
+          width: 100%;
+          margin: 0 auto;
+        }
+        .set-item iframe {
+          width: 100%;
+          height: 180px;
+        }
+        .podcast-list {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+          width: 50%;
+        }
+        .podcast-item {
+          text-align: left;
+          margin: 0 auto;
+        }
+        body {
+          max-width: 768px;
+          margin: 0 auto;
+          overflow-wrap: break-word;
+        }
+        #about {
+          flex-flow: column-reverse;
+        }
+        #about > img {
+          width: 100%;
+          margin: 0 auto;
+        }
+      }
+      html,
+      body {
+        overflow-y: auto !important;
+      }
+      details > summary {
+        display: flex;
+        align-items: center;
+        white-space: nowrap;
+      }
+      details > summary > * {
+        margin: 0;
+        display: inline;
+      }
+      #sidebar {
+        top: 0;
+        left: -250px;
+        position: fixed;
+        width: 250px;
+        height: 100%;
+        background: #333;
+        padding-top: 15%;
+        color: #fff;
+        transition: left 0.3s ease;
+        z-index: 1000;
+        opacity: 0.5;
+      }
+      #sidebar ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      #sidebar li {
+        margin: 10% 0;
+      }
+      #sidebar a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+      }
+      #hamburger {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        z-index: 1001;
+        cursor: pointer;
+        width: 30px;
+        height: 25px;
+      }
+      #hamburger div {
+        width: 100%;
+        height: 4px;
+        background: #fff;
+        margin: 4px 0;
+        transition: all 0.3s ease;
+      }
+    </style>
+    <script>
+      document
+        .getElementById("top")
+        .addEventListener("click", function (event) {
+          event.preventDefault();
+          history.pushState(null, "", "/");
+          loadTopPageContent();
+        });
+      function loadTopPageContent() {
+        console.log("Load contents of top page.");
+      }
+    </script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+    ></script>
+    <script type="text/javascript">
+      (function () {
+        emailjs.init("T01AZMGjUWoJO_TM_");
+      })();
+    </script>
+    <meta name="google-site-verification" content="GpXJyhbeuvAQjokD-9h5MKvHudJVmHN8ZAIa-M6nd1U" />
+  </head>
+  <body>
+    <header>
+      <a href="/" id="top"
+        ><img
+          src="https://cdn.glitch.global/50a091f7-1894-4552-851e-bc0708f3060e/header.png?v=1741508696495"
+      /></a>
+      <h1>Hirotoshi Uchida</h1>
+    </header>
+    <div id="contents">
+      <div id="sidebar">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#artwork">Artwork</a></li>
+          <li><a href="#discography">Discography</a></li>
+          <li><a href="#youtube">YouTube</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div id="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <br />
+      <details open>
+        <summary><h2>About</h2></summary>
+        <br />
+        <div id="about">
+          <h3>
+            I'm a creator and developer who have developmental disabilities and mental
+            disabilities.
+          </h3>
+          <br />
+          <img
+            src="https://cdn.glitch.global/50a091f7-1894-4552-851e-bc0708f3060e/theme.png?v=1741169098886"
+          />
+        </div>
+        <br />
+      </details>
+      <br />
+      <details open>
+        <summary><h2>Portfolio</h2></summary>
+        <br />
+        <div id="portfolio">
+          <ul id="repoList"></ul>
+          <div id="loader">
+            <div class="spinner"></div>
+            <p>Loading...</p>
+          </div>
+          <h3>
+            For more information, refer <span id="username"></span> or
+            followings.
+          </h3>
+          <script>
+            const username = "Uchida16104";
+            const tag = "portfolio";
+            const token = "__GH_TOKEN__";
+            const repoList = document.getElementById("repoList");
+            document.getElementById("username").innerHTML =
+              "<a href='https://github.com/Uchida16104'>" + username + "</a>";
+            async function getAuthenticatedUser() {
+              try {
+                const response = await fetch("https://api.github.com/user", {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                    Accept: "application/vnd.github+json",
+                  },
+                });
+                if (!response.ok) {
+                  throw new Error("Authenticated user fetch failed");
+                }
+                const data = await response.json();
+                console.log("Authenticated User:", data);
+              } catch (error) {
+                console.error(
+                  "Error fetching authenticated user:",
+                  `${error.message}`
+                );
+              }
+            }
+            async function getUserRepos(username) {
+              const response = await fetch(
+                `https://api.github.com/users/${username}/repos`,
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                    Accept: "application/vnd.github+json",
+                  },
+                }
+              );
+              if (!response.ok) {
+                throw new Error("Failed...");
+              }
+              return response.json();
+            }
+            async function getRepoTopics(username, repo) {
+              const response = await fetch(
+                `https://api.github.com/repos/${username}/${repo}/topics`,
+                {
+                  headers: {
+                    Authorization: `Bearer ${token}`,
+                    Accept: "application/vnd.github.mercy-preview+json",
+                  },
+                }
+              );
+              if (!response.ok) {
+                return [];
+              }
+              const data = await response.json();
+              return data.names || [];
+            }
+            async function filterRepos() {
+              try {
+                const response = await fetch("https://api.github.com/users/Uchida16104/repos");
+                if (!response.ok) throw new Error("Failed to fetch repositories");
+                const repos = await response.json();
+                const filteredRepos = repos.filter(repo =>
+                  repo.topics ? repo.topics.includes("portfolio") : false
+                );
+                filteredRepos.sort((a, b) => new Date(a.created_at) - new Date(b.created_at));
+                const repoList = document.getElementById("repoList");
+                filteredRepos.forEach((repo) => {
+                  const li = document.createElement("li");
+                  const a = document.createElement("a");
+                  a.href = repo.html_url;
+                  a.textContent = repo.name;
+                  a.target = "_blank";
+                  li.appendChild(a);
+                  const desc = document.createElement("p");
+                  desc.textContent = repo.description || "No description available.";
+                  li.appendChild(desc);
+                  const created = document.createElement("p");
+                  created.textContent = "Created at: " + new Date(repo.created_at).toLocaleString();
+                  li.appendChild(created);
+                  const updated = document.createElement("p");
+                  updated.textContent = "Last updated at: " + new Date(repo.updated_at).toLocaleString();
+                  li.appendChild(updated);
+                  if (repo.homepage && repo.homepage.trim() !== "") {
+                    const iframe = document.createElement("iframe");
+                    iframe.src = repo.homepage;
+                    iframe.style.width = "100%";
+                    iframe.style.height = "300px";
+                    iframe.style.border = "1px solid #ccc";
+                    iframe.loading = "lazy";
+                    li.appendChild(iframe);
+                  }
+                  repoList.appendChild(li);
+                });
+                const loader = document.getElementById("loader");
+                if (loader) loader.remove();
+              } catch (error) {
+                document.getElementById("repoList").textContent = "Error: " + error.message;
+                const loader = document.getElementById("loader");
+                if (loader) loader.remove();
+              }
+            }
+            getAuthenticatedUser();
+            filterRepos();
+          </script>
+          <div id="lit-widget-container"></div>
+          <br />
+        </div>
+      </details>
+      <br />
+      <script>
+        (function () {
+          var widgetURL = "https://lit.link/hirotoshiuchida";
+          var iframe = document.createElement("iframe");
+          iframe.src = widgetURL;
+          iframe.style.width = "100%";
+          iframe.style.height = "600px";
+          iframe.style.border = "none";
+          iframe.setAttribute("title", "Lit.link Widget");
+          iframe.onerror = function () {
+            console.error("Failed...");
+            var container = document.getElementById("lit-widget-container");
+            container.innerHTML =
+              "<p style='color:red; text-align:center; padding:20px;'>Failed...</p>";
+          };
+          var container = document.getElementById("lit-widget-container");
+          container.appendChild(iframe);
+        })();
+      </script>
+      <details open>
+        <summary>
+          <h2>Artwork<br /><span>(Image + Photo + Video)</span></h2>
+        </summary>
+        <br />
+        <div
+          id="artwork"
+          class="embedsocial-hashtag"
+          data-ref="6015958fb493858fa4c937e445f3abcbb2f68843"
+          data-lazyload="yes"
+        >
+          <a
+            class="feed-powered-by-es feed-powered-by-es-feed-img es-widget-branding"
+            href="https://embedsocial.jp/"
+            target="_blank"
+            title="Created on EmbedSocial"
+          >
+            <img
+              src="https://embedsocial.com/cdn/icon/embedsocial-logo.webp"
+              alt="EmbedSocial"
+            />
+            <div class="es-widget-branding-text">Created on EmbedSocial.</div>
+          </a>
+        </div>
+        <script>
+          (function (d, s, id) {
+            var js;
+            if (d.getElementById(id)) {
+              return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://embedsocial.com/cdn/ht.js";
+            d.getElementsByTagName("head")[0].appendChild(js);
+          })(document, "script", "EmbedSocialHashtagScript");
+        </script>
+        <script>
+          (function (d, s, id) {
+            var js;
+            if (d.getElementById(id)) {
+              return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://embedsocial.com/cdn/ht.js";
+            d.getElementsByTagName("head")[0].appendChild(js);
+          })(document, "script", "EmbedSocialHashtagScript");
+        </script>
+      </details>
+      <details open>
+        <summary><h2>Discography</h2></summary>
+        <br />
+        <div id="discography">
+          <div class="set-list" id="setList"></div>
+        </div>
+        <br />
+      </details>
+      <br />
+      <script>
+        document.addEventListener("DOMContentLoaded", function () {
+          const setUrls = [
+            "https://hearthis.at/hirotoshi-uchida/set/no-rights-and-duties-but-free/",
+            "https://hearthis.at/hirotoshi-uchida/set/virtual-pretense-sound/",
+            "https://hearthis.at/hirotoshi-uchida/set/digitalize-cosmos/",
+            "https://hearthis.at/hirotoshi-uchida/set/the-raw/",
+            "https://hearthis.at/hirotoshi-uchida/set/gonna-your-way-to-the-avant-garde-microtoners/",
+            "https://hearthis.at/hirotoshi-uchida/set/ethno-ethnic-met-techno/",
+            "https://hearthis.at/hirotoshi-uchida/set/microchaotic-algorithm/",
+            "https://hearthis.at/hirotoshi-uchida/set/orchestral-and-noise-works/",
+            "https://hearthis.at/hirotoshi-uchida/set/symphonic-suite-and-concerto-series/",
+            "https://hearthis.at/hirotoshi-uchida/set/microtonal-ethno/",
+            "https://hearthis.at/hirotoshi-uchida/set/brainwashing/",
+            "https://hearthis.at/hirotoshi-uchida/set/prejudice/",
+            "https://hearthis.at/hirotoshi-uchida/set/fusion-vol.1/",
+            "https://hearthis.at/hirotoshi-uchida/set/fusion-vol.2/",
+            "https://hearthis.at/hirotoshi-uchida/set/cells/",
+            "https://hearthis.at/hirotoshi-uchida/set/quark/",
+            "https://hearthis.at/hirotoshi-uchida/set/lepton-vol.1/",
+            "https://hearthis.at/hirotoshi-uchida/set/lepton-vol.2/",
+            "https://hearthis.at/hirotoshi-uchida/set/lepton-vol.3/",
+            "https://hearthis.at/hirotoshi-uchida/set/lepton-vol.4/",
+            "https://hearthis.at/hirotoshi-uchida-2nd/set/structure-and-expression/",
+            "https://hearthis.at/hirotoshi-uchida-4th/set/inaudible-music-for-animals-for-electronics/",
+          ];
+          const setListContainer = document.getElementById("setList");
+          function createSetIframe(setUrl) {
+            let formattedUrl = setUrl.endsWith("/") ? setUrl : setUrl + "/";
+            const embedUrl = formattedUrl + "embed/";
+            const iframe = document.createElement("iframe");
+            iframe.src = embedUrl;
+            iframe.setAttribute("allow", "autoplay; encrypted-media");
+            return iframe;
+          }
+          setUrls.forEach(function (url) {
+            const setItem = document.createElement("div");
+            setItem.className = "set-item";
+            const iframe = createSetIframe(url);
+            setItem.appendChild(iframe);
+            setListContainer.appendChild(setItem);
+          });
+        });
+      </script>
+      <details open>
+        <summary>
+          <h2>YouTube (Latest 3 works)</h2>
+        </summary>
+        <br />
+        <div id="youtube">
+          <div class="podcast-list" id="podcastList"></div>
+          <h3>
+            For more information, refer
+            <a href="https://www.youtube.com/@HirotoshiUchida"
+              >Hirotoshi Uchida</a
+            >.
+          </h3>
+        </div>
+        <br />
+      </details>
+      <br />
+      <script>
+        const apiKey = "AIzaSyDJYXDX13Uay5icdedOV2KVR8ce42CrQh0";
+        const channelId = "UCvCU8ZehFLwihfBGlGHQdVg";
+        const maxResults = 3;
+        async function fetchPodcasts() {
+          try {
+            const channelResponse = await fetch(
+              `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${channelId}&key=${apiKey}`
+            );
+            const channelData = await channelResponse.json();
+            if (!channelData.items || channelData.items.length === 0) {
+              throw new Error("No contents...");
+            }
+            const uploadsPlaylistId =
+              channelData.items[0].contentDetails.relatedPlaylists.uploads;
+            const playlistResponse = await fetch(
+              `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=${maxResults}&key=${apiKey}`
+            );
+            const playlistData = await playlistResponse.json();
+            if (!playlistData.items || playlistData.items.length === 0) {
+              throw new Error("No video...");
+            }
+            const podcastListElement = document.getElementById("podcastList");
+            podcastListElement.innerHTML = "";
+            playlistData.items.forEach((item) => {
+              const videoId = item.snippet.resourceId.videoId;
+              const title = item.snippet.title;
+              const thumbnail = item.snippet.thumbnails.medium.url;
+              const podcastItem = document.createElement("div");
+              podcastItem.className = "podcast-item";
+              const imgElement = document.createElement("img");
+              imgElement.src = thumbnail;
+              imgElement.alt = title;
+              const contentDiv = document.createElement("div");
+              contentDiv.className = "podcast-content";
+              const titleElement = document.createElement("h4");
+              titleElement.className = "podcast-title";
+              titleElement.textContent = title;
+              const linkElement = document.createElement("a");
+              linkElement.className = "podcast-link";
+              linkElement.href = `https://www.youtube.com/watch?v=${videoId}`;
+              linkElement.target = "_blank";
+              linkElement.textContent = "Watch";
+              contentDiv.appendChild(titleElement);
+              contentDiv.appendChild(linkElement);
+              podcastItem.appendChild(imgElement);
+              podcastItem.appendChild(contentDiv);
+              podcastListElement.appendChild(podcastItem);
+            });
+          } catch (error) {
+            console.error("Error:", error);
+            document.getElementById(
+              "podcastList"
+            ).innerHTML = `<p style="color:red;">Error: ${error.message}</p>`;
+          }
+        }
+        document.addEventListener("DOMContentLoaded", fetchPodcasts);
+      </script>
+      <div id="form-section">
+        <h2 id="contact">Contact</h2>
+        <form id="contactForm">
+          <input type="hidden" name="contact_number" id="contact_number" />
+          <label for="user_name">Name:</label>
+          <input type="text" name="user_name" id="user_name" required />
+          <label for="user_email">Email:</label>
+          <input type="email" name="user_email" id="user_email" required />
+          <label for="subject">Subject:</label>
+          <input type="text" name="subject" id="subject" required />
+          <label for="message">Message:</label>
+          <textarea name="message" id="message" required></textarea>
+          <br />
+          <button type="submit">Send</button>
+        </form>
+      </div>
+      <p>
+        * Please note that I may not always be able to reply to your inquiry.
+      </p>
+      <div id="confirmation-section" class="hidden">
+        <h2>Confirm Your Details</h2>
+        <p>
+          <strong>Contact Number:</strong>
+          <span id="confirm_contact_number"></span>
+        </p>
+        <p><strong>Name:</strong> <span id="confirm_user_name"></span></p>
+        <p><strong>Email:</strong> <span id="confirm_user_email"></span></p>
+        <p><strong>Subject:</strong> <span id="confirm_subject"></span></p>
+        <p><strong>Message:</strong></p>
+        <p id="confirm_message"></p>
+        <button id="acceptButton">Accept</button>
+        <button id="rejectButton">Reject</button>
+      </div>
+      <div id="success-section" class="hidden">
+        <h2>Email Sent Successfully!</h2>
+        <p>Thank you for contacting me.</p>
+      </div>
+      <script type="text/javascript">
+        document
+          .getElementById("contactForm")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+            var contactNumber = Math.floor(Math.random() * 100000);
+            document.getElementById("contact_number").value = contactNumber;
+            var userName = document.getElementById("user_name").value.trim();
+            var userEmail = document.getElementById("user_email").value.trim();
+            var subject = document.getElementById("subject").value.trim();
+            var message = document.getElementById("message").value.trim();
+            if (userName && userEmail && subject && message) {
+              document.getElementById("confirm_contact_number").textContent =
+                contactNumber;
+              document.getElementById("confirm_user_name").textContent =
+                userName;
+              document.getElementById("confirm_user_email").textContent =
+                userEmail;
+              document.getElementById("confirm_subject").textContent = subject;
+              document.getElementById("confirm_message").textContent = message;
+
+              document.getElementById("form-section").classList.add("hidden");
+              document
+                .getElementById("confirmation-section")
+                .classList.remove("hidden");
+            } else {
+              alert("Please fill in all fields.");
+            }
+          });
+        document
+          .getElementById("acceptButton")
+          .addEventListener("click", function () {
+            var templateParams = {
+              contact_number: document.getElementById("contact_number").value,
+              user_name: document.getElementById("user_name").value,
+              user_email: document.getElementById("user_email").value,
+              subject: document.getElementById("subject").value,
+              message: document.getElementById("message").value,
+            };
+            emailjs
+              .send("service_3ujie1g", "template_ve6y3im", templateParams)
+              .then(
+                function (response) {
+                  console.log("SUCCESS!", response.status, response.text);
+                  document
+                    .getElementById("confirmation-section")
+                    .classList.add("hidden");
+                  document
+                    .getElementById("success-section")
+                    .classList.remove("hidden");
+                },
+                function (error) {
+                  console.log("FAILED...", error);
+                  alert("Failed...");
+                }
+              );
+          });
+        document
+          .getElementById("rejectButton")
+          .addEventListener("click", function () {
+            window.location.href = "https://hirotoshiuchida.glitch.me/";
+          });
+      </script>
+      <footer>
+        <p><span id="year"></span> © Hirotoshi Uchida</p>
+      </footer>
+      <script>
+        const now = new Date();
+        document.getElementById("year").innerText = now.getFullYear();
+        function setRandomGradientBackground() {
+          const colors = [
+            `hsl(${Math.random() * 360}, 100%, ${20 + Math.random() * 10}%)`,
+            `hsl(${Math.random() * 360}, 100%, ${20 + Math.random() * 10}%)`,
+          ];
+          document.body.style.background = `linear-gradient(${
+            Math.random() * 360
+          }deg, ${colors[0]}, ${colors[1]})`;
+        }
+        function createGlitchEffect() {
+          const glitch = document.createElement("div");
+          glitch.className = "glitch";
+          glitch.style.width = `${10 + Math.random() * 20}px`;
+          glitch.style.height = `${10 + Math.random() * 20}px`;
+          glitch.style.top = `${Math.random() * 100}vh`;
+          glitch.style.left = `${Math.random() * 100}vw`;
+          document.body.appendChild(glitch);
+          const duration = 100 + Math.random() * 400;
+          setTimeout(() => {
+            glitch.style.opacity = "0";
+          }, duration / 2);
+          setTimeout(() => {
+            glitch.remove();
+          }, duration);
+        }
+        function createParticle() {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+          const size = 5 + Math.random() * 15;
+          particle.style.width = `${size}px`;
+          particle.style.height = `${size}px`;
+          particle.style.top = `${Math.random() * 100}vh`;
+          particle.style.left = `${Math.random() * 100}vw`;
+          document.body.appendChild(particle);
+          const duration = 1000 + Math.random() * 2000;
+          setTimeout(() => {
+            particle.style.opacity = "0";
+          }, duration / 2);
+          setTimeout(() => {
+            particle.remove();
+          }, duration);
+        }
+        setInterval(setRandomGradientBackground, 5000);
+        setInterval(createGlitchEffect, 100);
+        setInterval(createParticle, 200);
+      </script>
+      <script>
+        document
+          .getElementById("hamburger")
+          .addEventListener("click", function () {
+            const sidebar = document.getElementById("sidebar");
+            if (sidebar.style.left === "0px") {
+              sidebar.style.left = "-250px";
+            } else {
+              sidebar.style.left = "0px";
+            }
+          });
+        window.addEventListener("DOMContentLoaded", () => {
+          const h2s = document.querySelectorAll("h2");
+          if (h2s.length >= 1) h2s[0].id = "about";
+          if (h2s.length >= 2) h2s[1].id = "portfolio";
+          if (h2s.length >= 3) h2s[2].id = "discography";
+          const youtubeLink = document.querySelector("h2 a");
+          if (youtubeLink) youtubeLink.id = "youtube";
+        });
+      </script>
+    </div>
+  </body>
+</html>
