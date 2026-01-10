@@ -1,12 +1,17 @@
 name: Validate Theme
-on: [push]
+
+on:
+  push:
+
 jobs:
-check:
-runs-on: ubuntu-latest
-steps:
-- uses: actions/checkout@v4
-- name: Verify templates
-run: |
-for f in index.php 404.php page.php single.php archive.php category.php taxonomy.php author.php date.php; do
-test -f wp-content/themes/hirotoshi-uchida/$f
-done
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify templates
+        run: |
+          for f in index.php 404.php page.php single.php archive.php category.php taxonomy.php author.php date.php; do
+            test -f wp-content/themes/hirotoshiuchida/$f
+          done
