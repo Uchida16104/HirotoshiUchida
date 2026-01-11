@@ -460,7 +460,7 @@ function contactForm() {
         .send("service_3ujie1g", "template_ve6y3im", this.form)
         .then(() => {
           this.step = "success";
-          document.getElementById('tracker').src = "https://hirotoshi-uchida.vercel.app/track?action=email&email=success";
+          document.getElementById('tracker').src = "https://hirotoshiuchida.onrender.com/track?action=email&email=success";
         })
         .catch(() => {
           alert("Failed to send email.");
@@ -482,7 +482,7 @@ function contactForm() {
         const target = e.target.closest('button, a');
         if (!target) return;
         const section = target.closest('section')?.id || 'unknown';
-        tracker.src = `https://hirotoshi-uchida.vercel.app/track?action=click&section=${section}`;
+        tracker.src = `https://hirotoshiuchida.onrender.com/track?action=click&section=${section}`;
     });
     const sections = document.querySelectorAll('section[id]');
     const seen = new Set();
@@ -492,12 +492,12 @@ function contactForm() {
             const rect = sec.getBoundingClientRect();
             if (rect.top < viewportHeight * 0.5 && !seen.has(sec.id)) {
                 seen.add(sec.id);
-                tracker.src = `https://hirotoshi-uchida.vercel.app/track?action=scroll&section=${sec.id}`;
+                tracker.src = `https://hirotoshiuchida.onrender.com/track?action=scroll&section=${sec.id}`;
             }
         });
     });
 })();
 </script>
-<img src="https://hirotoshi-uchida.vercel.app/track" alt="" width="1" height="1" style="display:none">
+<img src="https://hirotoshiuchida.onrender.com/track" alt="" width="1" height="1" style="display:none">
 </body>
 </html>
