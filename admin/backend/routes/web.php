@@ -2,6 +2,12 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/', function () {
+    return view('index');
+});
+
 Route::get('/track', function (\Illuminate\Http\Request $request) {
     $ip = anonymizeIP($request->ip());
     $ua = $request->userAgent();
