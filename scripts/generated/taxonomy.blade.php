@@ -1,1 +1,0 @@
-<!-- taxonomy.blade.php generated -->
