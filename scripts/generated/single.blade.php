@@ -1,1 +1,0 @@
-<!-- single.blade.php generated -->

@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../../../../../Documents/GitHub/HirotoshiUchida/frontend/app/preview/page.tsx"],"sourcesContent":["export const dynamic = 'force-dynamic';\nexport default function Preview() {\n  return <p>Preview Mode</p>;\n}\n\n"],"names":[],"mappings":"2TACe,SAAS,IACtB,MAAO,CAAA,EAAA,EAAA,GAAA,EAAC,IAAA,UAAE,gBACZ,kCAHuB"}

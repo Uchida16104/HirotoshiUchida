@@ -1,3 +1,0 @@
-<?hh
-echo "<button>☰</button>";
-

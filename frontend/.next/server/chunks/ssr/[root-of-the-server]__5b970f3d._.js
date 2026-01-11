@@ -1,3 +1,0 @@
-module.exports=[93695,(a,b,c)=>{b.exports=a.x("next/dist/shared/lib/no-fallback-error.external.js",()=>require("next/dist/shared/lib/no-fallback-error.external.js"))},72898,a=>{a.n(a.i(95976))},32602,a=>{a.n(a.i(85026))},41333,a=>{a.n(a.i(40017))},18288,a=>{a.n(a.i(13604))},38769,a=>{"use strict";var b=a.i(26358);function c(){return(0,b.jsxs)("main",{className:"p-8 max-w-3xl mx-auto",children:[(0,b.jsx)("h1",{className:"text-3xl font-bold",children:"Hirotoshi Uchida"}),(0,b.jsx)("p",{className:"mt-4",children:"Portfolio & Posts"})]})}a.s(["default",()=>c])}];
-
-//# sourceMappingURL=%5Broot-of-the-server%5D__5b970f3d._.js.map
