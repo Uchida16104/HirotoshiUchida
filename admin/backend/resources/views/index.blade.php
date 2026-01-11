@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en" class="h-full scroll-smooth">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Hirotoshi Uchida</title>
+
+<!-- ================= STRUCTURED DATA ================= -->
+<script type="application/ld+json">
+{
+ "@context":"https://schema.org",
+ "@type":"Person",
+ "name":"Hirotoshi Uchida",
+ "url":"https://hirotoshi-uchida.vercel.app",
+ "sameAs":[
+  "https://github.com/Uchida16104",
+  "https://x.com/h1r010sh1",
+  "https://hearthis.at/hirotoshi-uchida",
+  "https://youtube.com/@HirotoshiUchida",
+  "https://lit.link/hirotoshiuchida",
+  "https://note.com/uchida_16104"
+ ]
+}
+</script>
+
+<!-- ================= IMPORT MAP ================= -->
+<script type="importmap">
+{
+ "imports":{
+  "alpinejs":"https://cdn.jsdelivr.net/npm/alpinejs@latest/dist/module.esm.js",
+  "motion":"https://cdn.jsdelivr.net/npm/motion@latest/+esm"
+ }
+}
+</script>
+
+<!-- ================= LIBRARIES ================= -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<script src="https://unpkg.com/htmx.org@latest"></script>
+<script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+
+<script src="https://unpkg.com/hyperscript.org@latest"></script>
+
+<script type="module">
+import Alpine from "alpinejs";
+import { animate } from "motion";
+window.Alpine = Alpine;
+window.motionAnimate = animate;
+Alpine.start();
+</script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@latest/dist/aos.css">
+<script src="https://cdn.jsdelivr.net/npm/aos@latest/dist/aos.js"></script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@latest/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@latest/swiper-bundle.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@latest/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({ startOnLoad:true });</script>
+
+<script src="https://cdn.jsdelivr.net/npm/lottie-web@latest/build/player/lottie.min.js"></script>
+
+<script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@latest/dist/shoelace.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@latest/dist/themes/dark.css">
+
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<style>
+@media (prefers-reduced-motion: reduce){
+ *{
+  animation:none!important;
+  transition:none!important;
+  scroll-behavior:auto!important;
+ }
+}
+</style>
+</head>
+
+<body class="bg-black text-white min-h-full">
+
+<!-- ================= HEADER ================= -->
+<header class="fixed inset-x-0 top-0 z-50 bg-black/70 backdrop-blur"
+        x-data="{open:false}">
+<nav class="max-w-7xl mx-auto flex items-center justify-between p-4"
+     role="navigation" aria-label="Primary Navigation">
+
+<span class="font-bold">Hirotoshi Uchida</span>
+
+<button @click="open=!open"
+        aria-label="Menu"
+        :aria-expanded="open.toString()"
+        class="md:hidden">
+<iconify-icon icon="mdi:menu" width="28"></iconify-icon>
+</button>
+
+<ul class="hidden md:flex gap-6">
+<li><a href="#about">About</a></li>
+<li><a href="#portfolio">Portfolio</a></li>
+<li><a href="#artwork">Artwork</a></li>
+<li><a href="#posts">Posts</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+
+<ul x-show="open"
+    x-transition
+    @click.outside="open=false"
+    class="md:hidden bg-black border-t p-4 space-y-3">
+<li><a href="#about">About</a></li>
+<li><a href="#portfolio">Portfolio</a></li>
+<li><a href="#artwork">Artwork</a></li>
+<li><a href="#posts">Posts</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</header>
+
+<main class="pt-28 space-y-32">
+
+<!-- ================= ABOUT ================= -->
+<section id="about" class="max-w-4xl mx-auto" data-aos="fade-up">
+<details open>
+<summary>
+<h1 class="text-4xl font-bold">Hirotoshi Uchida</h1>
+</summary>
+<p class="mt-4 opacity-80">
+Creator / Developer<br>
+Developmental disabilities / Mental disabilities
+</p>
+<div id="lit-widget-container"></div>
+<script>
+        (function () {
+          var widgetURL = "https://lit.link/hirotoshiuchida";
+          var iframe = document.createElement("iframe");
+          iframe.src = widgetURL;
+          iframe.style.width = "100%";
+          iframe.style.height = "600px";
+          iframe.style.border = "none";
+          iframe.setAttribute("title", "Lit.link Widget");
+          iframe.onerror = function () {
+            console.error("Failed...");
+            var container = document.getElementById("lit-widget-container");
+            container.innerHTML =
+              "<p style='color:red; text-align:center; padding:20px;'>Failed...</p>";
+          };
+          var container = document.getElementById("lit-widget-container");
+          container.appendChild(iframe);
+        })();
+      </script>
+</details>     
+<!-- ================= PORTFOLIO ================= -->
+<section id="portfolio" class="max-w-6xl mx-auto space-y-8" data-aos="fade-up">
+  <details open>
+<summary>
+<h2 class="text-3xl font-bold">Portfolio</h2>
+  </summary>
+<div id="portfolio-grid" class="grid md:grid-cols-2 gap-6"></div>
+</details>
+</section>
+      <details open>
+        <summary class="max-w-4xl mx-auto aos-init aos-animate">
+          <h2 class="text-3xl font-bold max-w-4xl mx-auto aos-init aos-animate">Artwork<br /><span>(Image + Photo + Video)</span></h2>
+        </summary>
+        <br />
+        <div
+          id="artwork"
+          class="embedsocial-hashtag max-w-4xl mx-auto aos-init aos-animate"
+          data-ref="6015958fb493858fa4c937e445f3abcbb2f68843"
+          data-lazyload="yes"
+        >
+          <a
+            class="feed-powered-by-es feed-powered-by-es-feed-img es-widget-branding"
+            href="https://embedsocial.jp/"
+            target="_blank"
+            title="Created on EmbedSocial"
+          >
+            <img
+              src="https://embedsocial.com/cdn/icon/embedsocial-logo.webp"
+              alt="EmbedSocial"
+            />
+            <div class="es-widget-branding-text">Created on EmbedSocial.</div>
+          </a>
+        </div>
+        <script>
+          (function (d, s, id) {
+            var js;
+            if (d.getElementById(id)) {
+              return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://embedsocial.com/cdn/ht.js";
+            d.getElementsByTagName("head")[0].appendChild(js);
+          })(document, "script", "EmbedSocialHashtagScript");
+        </script>
+        <script>
+          (function (d, s, id) {
+            var js;
+            if (d.getElementById(id)) {
+              return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://embedsocial.com/cdn/ht.js";
+            d.getElementsByTagName("head")[0].appendChild(js);
+          })(document, "script", "EmbedSocialHashtagScript");
+        </script>
+      </details>
+</main>
+<!-- ================= POSTS ================= -->
+<section id="posts" class="max-w-4xl mx-auto space-y-6" data-aos="fade-up">
+<details open>
+<summary>
+<h2 class="text-3xl font-bold">Posts</h2>
+</summary>
+<ul id="posts-list" class="space-y-4"></ul>
+</details>
+</section>
+<!-- ================= CONTACT ================= -->
+<section
+  id="contact"
+  class="max-w-4xl mx-auto space-y-6 aos-init aos-animate"
+  x-data="contactForm()"
+  x-cloak
+  data-aos="fade-up"
+  aria-labelledby="contact-title"
+>
+<details open>
+<summary>
+  <h2 id="contact-title" class="text-3xl font-bold mb-4">Contact</h2>
+  </summary>
+
+  <!-- ================= FORM ================= -->
+  <form
+    x-show="step === 'form'"
+    x-transition
+    @submit.prevent="confirm"
+    class="space-y-3"
+    aria-label="Contact form"
+  >
+    <input type="hidden" x-model="form.contact_number" />
+
+    <label class="block">
+      <span>Name</span>
+      <input
+        type="text"
+        x-model.trim="form.user_name"
+        required
+        class="w-full p-2 text-black"
+      />
+    </label>
+
+    <label class="block">
+      <span>Email</span>
+      <input
+        type="email"
+        x-model.trim="form.user_email"
+        required
+        class="w-full p-2 text-black"
+      />
+    </label>
+
+    <label class="block">
+      <span>Subject</span>
+      <input
+        type="text"
+        x-model.trim="form.subject"
+        required
+        class="w-full p-2 text-black"
+      />
+    </label>
+
+    <label class="block">
+      <span>Message</span>
+      <textarea
+        x-model.trim="form.message"
+        required
+        class="w-full p-2 text-black"
+      ></textarea>
+    </label>
+
+    <button
+      type="submit"
+      class="block mx-auto px-6 py-2 border rounded"
+    >
+      Send
+    </button>
+  </form>
+
+  <!-- ================= CONFIRM ================= -->
+  <div
+    x-show="step === 'confirm'"
+    x-transition
+    aria-live="polite"
+    class="space-y-3"
+  >
+    <h3 class="text-xl font-bold">Confirm Your Details</h3>
+
+    <ul class="text-sm space-y-1">
+      <li><strong>No:</strong> <span x-text="form.contact_number"></span></li>
+      <li><strong>Name:</strong> <span x-text="form.user_name"></span></li>
+      <li><strong>Email:</strong> <span x-text="form.user_email"></span></li>
+      <li><strong>Subject:</strong> <span x-text="form.subject"></span></li>
+      <li><strong>Message:</strong></li>
+      <li class="opacity-80" x-text="form.message"></li>
+    </ul>
+
+    <div class="flex gap-4 justify-center">
+      <button
+        @click="send"
+        :disabled="sending"
+        class="px-4 py-2 border rounded text-blue-300"
+      >
+        Accept
+      </button>
+
+      <button
+        @click="reset"
+        class="px-4 py-2 border rounded text-yellow-300"
+      >
+        Reject
+      </button>
+    </div>
+  </div>
+
+  <!-- ================= SUCCESS ================= -->
+  <div
+    x-show="step === 'success'"
+    x-transition
+    role="status"
+    aria-live="polite"
+    class="text-center space-y-2"
+  >
+    <svg width="48" height="48" viewBox="0 0 24 24" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M9 16.2l-3.5-3.5L4 14.2l5 5 12-12-1.4-1.4z"
+      />
+    </svg>
+
+    <h3 class="text-xl font-bold text-green-300">
+      Email Sent Successfully!
+    </h3>
+    <p class="opacity-70">Thank you for contacting me.</p>
+  </div>
+  </details>
+</section>
+
+
+
+<footer class="text-center py-8 opacity-70">
+© <span id="year"></span> Hirotoshi Uchida
+</footer>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+AOS.init();
+
+/* ================= PORTFOLIO (STRICT TAG PARSING + LINKED) ================= */
+(async()=>{
+ try{
+  const res = await fetch("https://api.github.com/users/Uchida16104/repos");
+  const repos = await res.json();
+  const grid = document.getElementById("portfolio-grid");
+
+  repos
+   .filter(r => Array.isArray(r.topics) && r.topics.includes("portfolio"))
+   .forEach(r=>{
+     const topics = r.topics.filter(t=>t!=="portfolio").join(", ") || "other";
+
+     grid.insertAdjacentHTML("beforeend",`
+      <article class="border p-4 rounded">
+       <a href="${r.html_url}"
+          style="text-decoration:none"
+          hx-get="${r.html_url}"
+          hx-push-url="true"
+          hx-swap="none">
+        <h3 class="font-bold">${r.name}</h3>
+        <p class="opacity-70">${topics}</p>
+        <p class="text-xs">Created: ${new Date(r.created_at).toLocaleDateString()}</p>
+        <p class="text-xs">Updated: ${new Date(r.updated_at).toLocaleDateString()}</p>
+       </a>
+      </article>
+     `);
+   });
+ }catch(e){
+  console.error(e);
+ }
+})();
+
+/* ================= POSTS (RSS + SUMMARY) ================= */
+(async()=>{
+ try{
+  const res = await fetch(
+   "https://api.allorigins.win/raw?url=https://note.com/uchida_16104/rss"
+  );
+  const txt = await res.text();
+  const doc = new DOMParser().parseFromString(txt,"text/xml");
+
+  [...doc.querySelectorAll("item")].slice(0,5).forEach(item=>{
+   const title = item.querySelector("title")?.textContent || "";
+   const link = item.querySelector("link")?.textContent || "";
+   const desc = item.querySelector("description")?.textContent || "";
+
+   const summary =
+     desc.replace(/<[^>]+>/g,"").slice(0,120) + "...";
+
+   document.getElementById("posts-list").insertAdjacentHTML("beforeend",`
+    <li>
+     <a href="${link}"
+        style="text-decoration:none"
+        hx-get="${link}"
+        hx-push-url="true"
+        hx-swap="none">
+      <h3 class="font-bold">${title}</h3>
+      <p class="text-sm opacity-70">${summary}</p>
+     </a>
+    </li>
+   `);
+  });
+ }catch(e){
+  console.error(e);
+ }
+})();
+
+/* ================= EMAILJS ================= */
+(function () {
+  emailjs.init("T01AZMGjUWoJO_TM_");
+})();
+function contactForm() {
+  return {
+    step: "form",
+    sending: false,
+    form: {
+      contact_number: "",
+      user_name: "",
+      user_email: "",
+      subject: "",
+      message: "",
+    },
+
+    confirm() {
+      const { user_name, user_email, subject, message } = this.form;
+
+      if (!user_name || !user_email || !subject || !message) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      this.form.contact_number = Math.floor(Math.random() * 100000);
+      this.step = "confirm";
+    },
+
+    send() {
+      if (this.sending) return;
+      this.sending = true;
+
+      emailjs
+        .send("service_3ujie1g", "template_ve6y3im", this.form)
+        .then(() => {
+          this.step = "success";
+          document.getElementById('tracker').src = "https://hirotoshiuchida.onrender.com/track?action=email&email=success";
+        })
+        .catch(() => {
+          alert("Failed to send email.");
+          this.step = "form";
+        })
+        .finally(() => {
+          this.sending = false;
+        });
+    },
+
+    reset() {
+      this.step = "form";
+    },
+  };
+}
+(function() {
+    const tracker = document.getElementById('tracker');
+    document.addEventListener('click', e => {
+        const target = e.target.closest('button, a');
+        if (!target) return;
+        const section = target.closest('section')?.id || 'unknown';
+        tracker.src = `https://hirotoshiuchida.onrender.com/track?action=click&section=${section}`;
+    });
+    const sections = document.querySelectorAll('section[id]');
+    const seen = new Set();
+    window.addEventListener('scroll', () => {
+        const viewportHeight = window.innerHeight;
+        sections.forEach(sec => {
+            const rect = sec.getBoundingClientRect();
+            if (rect.top < viewportHeight * 0.5 && !seen.has(sec.id)) {
+                seen.add(sec.id);
+                tracker.src = `https://hirotoshiuchida.onrender.com/track?action=scroll&section=${sec.id}`;
+            }
+        });
+    });
+})();
+</script>
+<img src="https://hirotoshiuchida.onrender.com/track" alt="" width="1" height="1" style="display:none">
+</body>
+</html>
