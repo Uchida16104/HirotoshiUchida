@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hirotoshi Uchida</title>
 
-{{-- Structured Data --}}
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -15,15 +14,12 @@
 }
 </script>
 
-{{-- Tailwind CDN --}}
 <script src="https://cdn.tailwindcss.com"></script>
 
-{{-- HTMX --}}
 <script src="https://unpkg.com/htmx.org@latest"></script>
 <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
 <script src="https://unpkg.com/hyperscript.org@latest"></script>
 
-{{-- Import Map --}}
 <script type="importmap">
 {
  "imports": {
@@ -33,7 +29,6 @@
 }
 </script>
 
-{{-- Alpine + Motion --}}
 <script type="module">
 import Alpine from "alpinejs";
 import { animate } from "motion";
@@ -44,7 +39,6 @@ window.motionAnimate = animate;
 Alpine.start();
 </script>
 
-{{-- Libraries --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@latest/dist/aos.css">
 <script src="https://cdn.jsdelivr.net/npm/aos@latest/dist/aos.js"></script>
 
@@ -71,7 +65,6 @@ Alpine.start();
 
 <body class="bg-black text-white min-h-full">
 
-{{-- Header --}}
 <header x-data="{open:false}" class="fixed inset-x-0 top-0 z-50 bg-black/70 backdrop-blur">
 <nav class="max-w-7xl mx-auto flex justify-between p-4">
 <span class="font-bold">Hirotoshi Uchida</span>
@@ -108,7 +101,6 @@ Alpine.start();
 <section id="portfolio" class="max-w-6xl mx-auto" data-aos="fade-up">
 <h2 class="text-3xl font-bold mb-6">Portfolio</h2>
 
-{{-- Accordion --}}
 <div x-data="{open:false}" class="border rounded">
 <button @click="open=!open" class="w-full p-4 text-left font-bold">
 Projects
@@ -140,7 +132,6 @@ Email sent successfully.
 © {{ date('Y') }} Hirotoshi Uchida
 </footer>
 
-{{-- Scripts --}}
 <script>
 AOS.init();
 emailjs.init("T01AZMGjUWoJO_TM_");
