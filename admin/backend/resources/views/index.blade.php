@@ -5,30 +5,29 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Hirotoshi Uchida</title>
 
-{{-- ================= Structured Data ================= --}}
 <script type="application/ld+json">
 {
  "@context":"https://schema.org",
  "@type":"Person",
  "name":"Hirotoshi Uchida",
- "url":"https://hirotoshi-uchida.vercel.app"
-}
-</script>
-
-{{-- ================= Import Map ================= --}}
-<script type="importmap">
-{
- "imports":{
-  "alpinejs":"https://cdn.jsdelivr.net/npm/alpinejs@latest/dist/module.esm.js",
-  "motion":"https://cdn.jsdelivr.net/npm/motion@latest/+esm"
- }
+ "url":"https://hirotoshiuchida.onrender.com"
 }
 </script>
 
 <script src="https://cdn.tailwindcss.com"></script>
+
 <script src="https://unpkg.com/htmx.org@latest"></script>
 <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
 <script src="https://unpkg.com/hyperscript.org@latest"></script>
+
+<script type="importmap">
+{
+ "imports": {
+  "alpinejs": "https://cdn.jsdelivr.net/npm/alpinejs@latest/dist/module.esm.js",
+  "motion": "https://cdn.jsdelivr.net/npm/motion@latest/+esm"
+ }
+}
+</script>
 
 <script type="module">
 import Alpine from "alpinejs";
@@ -64,16 +63,14 @@ Alpine.start();
 
 <body class="bg-black text-white min-h-full">
 
-{{-- ================= Header ================= --}}
-<header class="fixed inset-x-0 top-0 z-50 bg-black/70 backdrop-blur"
-        x-data="{open:false}">
+<header x-data="{open:false}" class="fixed top-0 inset-x-0 z-50 bg-black/70 backdrop-blur">
 <nav class="max-w-7xl mx-auto flex justify-between p-4">
 <span class="font-bold">Hirotoshi Uchida</span>
 
 <button @click="open=!open"
-        aria-label="Menu"
-        :aria-expanded="open.toString()"
-        class="md:hidden">
+ aria-label="Menu"
+ :aria-expanded="open.toString()"
+ class="md:hidden">
 <iconify-icon icon="mdi:menu" width="28"></iconify-icon>
 </button>
 
@@ -85,7 +82,7 @@ Alpine.start();
 </nav>
 
 <ul x-show="open" x-transition @click.outside="open=false"
-    class="md:hidden bg-black border-t p-4 space-y-3">
+ class="md:hidden bg-black border-t p-4 space-y-3">
 <li><a href="#about">About</a></li>
 <li><a href="#portfolio">Portfolio</a></li>
 <li><a href="#contact">Contact</a></li>
@@ -101,20 +98,20 @@ Alpine.start();
 
 <section id="portfolio" class="max-w-6xl mx-auto" data-aos="fade-up">
 <h2 class="text-3xl font-bold mb-6">Portfolio</h2>
-<div id="portfolio-grid" class="grid md:grid-cols-2 gap-6"></div>
+<div class="grid md:grid-cols-2 gap-6"></div>
 </section>
 
 <section id="contact" class="max-w-4xl mx-auto" x-data="contactForm()" data-aos="fade-up">
 <h2 class="text-3xl font-bold mb-4">Contact</h2>
 
-<form x-show="step==='form'" @submit.prevent="confirm" class="space-y-3">
+<form x-show="step==='form'" @submit.prevent="send" class="space-y-3">
 <input x-model="form.user_name" required class="w-full p-2 text-black" placeholder="Name">
 <input x-model="form.user_email" type="email" required class="w-full p-2 text-black" placeholder="Email">
 <textarea x-model="form.message" required class="w-full p-2 text-black"></textarea>
 <button class="border px-6 py-2">Send</button>
 </form>
 
-<div x-show="step==='success'" class="text-green-300">
+<div x-show="step==='success'" class="text-green-400">
 Email sent successfully.
 </div>
 </section>
@@ -125,8 +122,8 @@ Email sent successfully.
 © {{ date('Y') }} Hirotoshi Uchida
 </footer>
 
-{{-- ================= Scripts ================= --}}
-@verbatim
+<?php
+echo <<<'JS'
 <script>
 AOS.init();
 emailjs.init("T01AZMGjUWoJO_TM_");
@@ -135,12 +132,15 @@ function contactForm(){
  return{
   step:'form',
   form:{user_name:'',user_email:'',message:''},
-  confirm(){ this.step='success' }
+  send(){
+   emailjs.send("default_service","template_default",this.form)
+    .then(()=>this.step='success');
+  }
  }
 }
 </script>
-@endverbatim
+JS;
+?>
 
-<img id="tracker" src="/track" alt="" hidden>
 </body>
 </html>
