@@ -1,3 +1,4 @@
+<?php ?>
 <!doctype html>
 <html lang="en" class="h-full scroll-smooth">
 <head>
