@@ -2,24 +2,28 @@
 <html lang="en" class="h-full scroll-smooth">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Hirotoshi Uchida</title>
 
+{{-- Structured Data --}}
 <script type="application/ld+json">
 {
- "@context":"https://schema.org",
- "@type":"Person",
- "name":"Hirotoshi Uchida",
- "url":"https://hirotoshiuchida.onrender.com"
+ "@context": "https://schema.org",
+ "@type": "Person",
+ "name": "Hirotoshi Uchida",
+ "url": "https://hirotoshiuchida.onrender.com"
 }
 </script>
 
+{{-- Tailwind CDN --}}
 <script src="https://cdn.tailwindcss.com"></script>
 
+{{-- HTMX --}}
 <script src="https://unpkg.com/htmx.org@latest"></script>
 <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
 <script src="https://unpkg.com/hyperscript.org@latest"></script>
 
+{{-- Import Map --}}
 <script type="importmap">
 {
  "imports": {
@@ -29,14 +33,18 @@
 }
 </script>
 
+{{-- Alpine + Motion --}}
 <script type="module">
 import Alpine from "alpinejs";
 import { animate } from "motion";
+
 window.Alpine = Alpine;
 window.motionAnimate = animate;
+
 Alpine.start();
 </script>
 
+{{-- Libraries --}}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@latest/dist/aos.css">
 <script src="https://cdn.jsdelivr.net/npm/aos@latest/dist/aos.js"></script>
 
@@ -55,22 +63,23 @@ Alpine.start();
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
 <style>
-@media (prefers-reduced-motion: reduce){
- *{ animation:none!important; transition:none!important }
+@media (prefers-reduced-motion: reduce) {
+ * { animation: none !important; transition: none !important; }
 }
 </style>
 </head>
 
 <body class="bg-black text-white min-h-full">
 
-<header x-data="{open:false}" class="fixed top-0 inset-x-0 z-50 bg-black/70 backdrop-blur">
+{{-- Header --}}
+<header x-data="{open:false}" class="fixed inset-x-0 top-0 z-50 bg-black/70 backdrop-blur">
 <nav class="max-w-7xl mx-auto flex justify-between p-4">
 <span class="font-bold">Hirotoshi Uchida</span>
 
 <button @click="open=!open"
- aria-label="Menu"
- :aria-expanded="open.toString()"
- class="md:hidden">
+        aria-label="Menu"
+        :aria-expanded="open.toString()"
+        class="md:hidden">
 <iconify-icon icon="mdi:menu" width="28"></iconify-icon>
 </button>
 
@@ -82,7 +91,7 @@ Alpine.start();
 </nav>
 
 <ul x-show="open" x-transition @click.outside="open=false"
- class="md:hidden bg-black border-t p-4 space-y-3">
+    class="md:hidden bg-black border-t p-4 space-y-3">
 <li><a href="#about">About</a></li>
 <li><a href="#portfolio">Portfolio</a></li>
 <li><a href="#contact">Contact</a></li>
@@ -98,7 +107,16 @@ Alpine.start();
 
 <section id="portfolio" class="max-w-6xl mx-auto" data-aos="fade-up">
 <h2 class="text-3xl font-bold mb-6">Portfolio</h2>
-<div class="grid md:grid-cols-2 gap-6"></div>
+
+{{-- Accordion --}}
+<div x-data="{open:false}" class="border rounded">
+<button @click="open=!open" class="w-full p-4 text-left font-bold">
+Projects
+</button>
+<div x-show="open" x-transition class="p-4 opacity-80">
+Project descriptions here.
+</div>
+</div>
 </section>
 
 <section id="contact" class="max-w-4xl mx-auto" x-data="contactForm()" data-aos="fade-up">
@@ -122,25 +140,22 @@ Email sent successfully.
 © {{ date('Y') }} Hirotoshi Uchida
 </footer>
 
-<?php
-echo <<<'JS'
+{{-- Scripts --}}
 <script>
 AOS.init();
 emailjs.init("T01AZMGjUWoJO_TM_");
 
 function contactForm(){
- return{
-  step:'form',
-  form:{user_name:'',user_email:'',message:''},
+ return {
+  step: 'form',
+  form: { user_name:'', user_email:'', message:'' },
   send(){
    emailjs.send("default_service","template_default",this.form)
-    .then(()=>this.step='success');
+     .then(() => this.step='success');
   }
  }
 }
 </script>
-JS;
-?>
 
 </body>
 </html>
