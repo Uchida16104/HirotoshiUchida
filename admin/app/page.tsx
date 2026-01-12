@@ -1,50 +1,26 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
-import { Line } from "react-chartjs-2";
-import "chart.js/auto";
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 
-export default function Page() {
-  const [logs, setLogs] = useState<any[]>([]);
+export default function HomePage() {
+  const router = useRouter();
 
   useEffect(() => {
-    const es = new EventSource(
-      "https://hirotoshiuchida.onrender.com/stream"
-    );
-    es.onmessage = e => setLogs(JSON.parse(e.data));
-    return () => es.close();
-  }, []);
-
-  const data = {
-    labels: logs.map(l => l.timestamp),
-    datasets: [
-      {
-        label: "Page Views",
-        data: logs.map((_, i) => i + 1),
-      },
-      {
-        label: "Email Sent",
-        data: logs.map(l => (l.email_status === "success" ? 1 : 0)),
-        borderColor: "green",
-      },
-      {
-        label: "Clicks",
-        data: logs.map(l => (l.action === "click" ? 1 : 0)),
-        borderColor: "blue",
-      },
-      {
-        label: "Section Scroll",
-        data: logs.map(l => (l.action === "scroll" ? 1 : 0)),
-        borderColor: "orange",
-      },
-    ],
-  };
+    const token = localStorage.getItem('token');
+    if (token) {
+      router.push('/dashboard');
+    } else {
+      router.push('/login');
+    }
+  }, [router]);
 
   return (
-    <main style={{ padding: 20 }}>
-      <h1>Activity Dashboard</h1>
-      <Line data={data} />
-      <pre>{JSON.stringify(logs, null, 2)}</pre>
-    </main>
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto"></div>
+        <p className="mt-4">Loading...</p>
+      </div>
+    </div>
   );
 }
