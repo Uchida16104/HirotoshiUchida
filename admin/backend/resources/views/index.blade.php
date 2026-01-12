@@ -56,11 +56,13 @@ Alpine.start();
 <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
+@verbatim
 <style>
 @media (prefers-reduced-motion: reduce) {
  * { animation: none !important; transition: none !important; }
 }
 </style>
+@endverbatim
 </head>
 
 <body class="bg-black text-white min-h-full">
