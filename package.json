@@ -21,7 +21,7 @@
     "jsonwebtoken": "^9.0.2",
     "geoip-lite": "^1.4.7",
     "sqlite3": "^5.1.7",
-    "better-sqlite3": "^9.4.0",
+    "better-sqlite3": "^12.6.0",
     "uuid": "^9.0.1",
     "express-rate-limit": "^7.1.5",
     "cookie-parser": "^1.4.6",
