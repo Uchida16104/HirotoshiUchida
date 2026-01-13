@@ -148,7 +148,7 @@ app.post('/api/auth/login', (req, res) => {
     const { username, password } = req.body;
     
     const validUsername = process.env.ADMIN_USERNAME || 'admin';
-    const validPassword = process.env.ADMIN_PASSWORD || 'admin123';
+    const validPassword = process.env.ADMIN_PASSWORD || 'password';
     
     if (username === validUsername && password === validPassword) {
       const token = generateToken({ username });
