@@ -16,7 +16,7 @@ jobs:
 
       - name: Install and Build frontend dependencies
         run: |
-          cd frontend
+          [ -d frontend ] && cd frontend || echo "not exist"
           npm install
           npm install --save-dev typescript @types/react @types/node
           npm run build
