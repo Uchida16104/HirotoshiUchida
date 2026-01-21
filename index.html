@@ -156,6 +156,7 @@ Developmental disabilities / Mental disabilities
 <h2 class="text-3xl font-bold">Portfolio</h2>
   </summary>
 <div id="portfolio-grid" class="grid md:grid-cols-2 gap-6"></div>
+<div id="portfolio-pagination" class="flex justify-center gap-2 mt-6"></div>
 </details>
 </section>
       <details open>
@@ -357,36 +358,79 @@ Developmental disabilities / Mental disabilities
 document.getElementById("year").textContent = new Date().getFullYear();
 AOS.init();
 
-/* ================= PORTFOLIO (STRICT TAG PARSING + LINKED) ================= */
+/* ================= PORTFOLIO (PAGINATED, MINIMAL CHANGE) ================= */
 (async()=>{
- try{
-  const res = await fetch("https://api.github.com/users/Uchida16104/repos");
-  const repos = await res.json();
-  const grid = document.getElementById("portfolio-grid");
+  try{
+    const res = await fetch("https://api.github.com/users/Uchida16104/repos?per_page=10");
+    const repos = await res.json();
 
-  repos
-   .filter(r => Array.isArray(r.topics) && r.topics.includes("portfolio"))
-   .forEach(r=>{
-     const topics = r.topics.filter(t=>t!=="portfolio").join(", ") || "other";
+    const grid = document.getElementById("portfolio-grid");
+    const pager = document.getElementById("portfolio-pagination");
 
-     grid.insertAdjacentHTML("beforeend",`
-      <article class="border p-4 rounded">
-       <a href="${r.html_url}"
-          style="text-decoration:none"
-          hx-get="${r.html_url}"
-          hx-push-url="true"
-          hx-swap="none">
-        <h3 class="font-bold">${r.name}</h3>
-        <p class="opacity-70">${topics}</p>
-        <p class="text-xs">Created: ${new Date(r.created_at).toLocaleDateString()}</p>
-        <p class="text-xs">Updated: ${new Date(r.updated_at).toLocaleDateString()}</p>
-       </a>
-      </article>
-     `);
-   });
- }catch(e){
-  console.error(e);
- }
+    const portfolioRepos = repos.filter(
+      r => Array.isArray(r.topics) && r.topics.includes("portfolio")
+    );
+
+    const PER_PAGE = 6;
+    let currentPage = 1;
+    const totalPages = Math.ceil(portfolioRepos.length / PER_PAGE);
+
+    function render(page){
+      grid.innerHTML = "";
+
+      const start = (page - 1) * PER_PAGE;
+      const end = start + PER_PAGE;
+
+      portfolioRepos.slice(start, end).forEach(r=>{
+        const topics = r.topics.filter(t=>t!=="portfolio").join(", ") || "other";
+
+        grid.insertAdjacentHTML("beforeend",`
+          <article class="border p-4 rounded">
+            <a href="${r.html_url}"
+               style="text-decoration:none"
+               hx-get="${r.html_url}"
+               hx-push-url="true"
+               hx-swap="none">
+              <h3 class="font-bold">${r.name}</h3>
+              <p class="opacity-70">${topics}</p>
+              <p class="text-xs">Created: ${new Date(r.created_at).toLocaleDateString()}</p>
+              <p class="text-xs">Updated: ${new Date(r.updated_at).toLocaleDateString()}</p>
+            </a>
+          </article>
+        `);
+      });
+    }
+
+    function renderPager(){
+      pager.innerHTML = "";
+
+      for(let i=1;i<=totalPages;i++){
+        pager.insertAdjacentHTML("beforeend",`
+          <button
+            class="px-3 py-1 border rounded ${i===currentPage ? "opacity-100" : "opacity-50"}"
+            data-page="${i}">
+            ${i}
+          </button>
+        `);
+      }
+
+      pager.querySelectorAll("button").forEach(btn=>{
+        btn.addEventListener("click",()=>{
+          currentPage = Number(btn.dataset.page);
+          render(currentPage);
+          renderPager();
+        });
+      });
+    }
+
+    if(portfolioRepos.length){
+      render(currentPage);
+      renderPager();
+    }
+
+  }catch(e){
+    console.error(e);
+  }
 })();
 
 /* ================= POSTS (RSS + SUMMARY) ================= */
